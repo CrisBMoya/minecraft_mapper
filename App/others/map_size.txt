@@ -1,0 +1,2 @@
+max_ncol	max_nrow
+10	6
