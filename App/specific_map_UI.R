@@ -1,0 +1,1 @@
+uiOutput(outputId = session$ns("map_spec"))

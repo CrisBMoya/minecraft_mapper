@@ -3,7 +3,7 @@
     "path": "C:/Users/tobal/Google Drive/Github/minecraft_mapper/server.R",
     "project_path": "server.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "4189574219",
     "contents": "",
     "dirty": false,
     "created": 1612439898943.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "89,146",
-        "scrollLine": "64"
+        "cursorPosition": "110,0",
+        "scrollLine": "54"
     },
     "folds": "",
-    "lastKnownWriteTime": 1612442204,
+    "lastKnownWriteTime": 1612446387,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1612442204780,
+    "last_content_update": 1612446387171,
     "read_only": false,
     "read_only_alternatives": []
 }

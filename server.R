@@ -87,70 +87,23 @@ coordinates_slices = paste0('204x204+', slice_map$Var1 ,'+', slice_map$Var2)
 # Define the server code
 shinyServer(function(input, output, session){
 	observe({
-		callModule(module=world_map, id='UniversalID', extra_data = list("coord_data" = coord_data, "grid_layout" = grid_layout, "grid_size" = grid_size))
+		
+		user_url=session$clientData$url_search
+		user_url = gsub(pattern='\\?', replacement='', x=user_url)
+		
+		if(grepl(pattern='map_', x=user_url)){
+			
+			hide(id='grid_setup')
+			show(id='map_spec')
+			callModule(module=specific_map, id='UniversalID', extra_data = list("user_url" = user_url, "coord_data" = coord_data))
+			
+		} else {
+			
+			hide(id='map_spec')
+			show(id='grid_setup')
+			callModule(module=world_map, id='UniversalID', extra_data = list("coord_data" = coord_data, "grid_layout" = grid_layout, "grid_size" = grid_size))
+			
+		}
 	})
 	
 })
-
-# server = function(input, output, session) {
-# 	
-# 	observe({
-# 		user_url=session$clientData$url_search
-# 		user_url = gsub(pattern='\\?', replacement='', x=user_url)
-# 		
-# 		if(grepl(pattern='map_', x=user_url)){
-# 			hide(id='grid_setup')
-# 			show(id='map_spec')
-# 			map_name = gsub(pattern='map_', replacement='', x=user_url)
-# 			
-# 			output$map_spec = renderUI({
-# 				tags$div(
-# 					#tags$img(src=paste0(map_name,'.png'), class = 'map_image_spec'),
-# 					
-# 					tags$div(id = 'grid_setup_spec' , class='grid-container',
-# 						style=paste0("display: grid; grid-template-columns: ", paste0(rep(x='204px', 4), collapse=' '),"; ",
-# 							"grid-template-rows: ", paste0(rep(x='204px', 4), collapse=' '),";", 
-# 							"background-image: url(",paste0(map_name,'.png'),"); width: 814px; height: 814px"),
-# 						
-# 						lapply(1:16, function(i) {
-# 							tags$div(class = 'container_spec',
-# 								tags$div(class = 'text_hover_container_c1_spec', coord_data[1,]$c1),
-# 								tags$div(class = 'text_hover_container_c2_spec', coord_data[1,]$c2),
-# 								tags$div(class = 'text_hover_container_c3_spec', coord_data[1,]$c3),
-# 								tags$div(class = 'text_hover_container_c4_spec', coord_data[1,]$c4)
-# 							)
-# 						})
-# 					)
-# 				)
-# 			})
-# 			
-# 		} else {
-# 			hide(id='map_spec')
-# 			show(id='grid_setup')
-# 			
-# 			
-# 			lapply(X=1:nrow(coord_data), FUN=function(x){
-# 				grid_id = grid_layout[coord_data[x,]$row_pos, coord_data[x,]$col_pos]
-# 				
-# 				output[[paste0('grid_', grid_id)]]=renderUI({
-# 					
-# 					tags$div(class = 'container',
-# 						tags$a(href = paste0('?map_', coord_data[x,]$id),
-# 							tags$img(src=paste0(coord_data[x,]$id,'.png'), class = 'map_image'),
-# 							
-# 							tags$div(class = 'text_hover_container_c1', coord_data[x,]$c1),
-# 							tags$div(class = 'text_hover_container_c2', coord_data[x,]$c2),
-# 							tags$div(class = 'text_hover_container_c3', coord_data[x,]$c3),
-# 							tags$div(class = 'text_hover_container_c4', coord_data[x,]$c4),
-# 							tags$div(class = 'text_hover_container_center', tags$div(class = 'inner_centered', 
-# 								paste0(coord_data[x,]$id, '\n', coord_data[x,]$center)))
-# 						)
-# 					)
-# 					
-# 				})
-# 			})
-# 			
-# 		}
-# 	})
-# }
-
