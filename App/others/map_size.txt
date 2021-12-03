@@ -1,2 +1,2 @@
 max_ncol	max_nrow
-10	6
+27	53

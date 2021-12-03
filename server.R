@@ -1,8 +1,4 @@
-library(shiny)
-library(dplyr)
-library(readxl)
-library(shinyjs)
-library(magick)
+
 
 # Define the server code
 shinyServer(function(input, output, session){
@@ -26,8 +22,6 @@ shinyServer(function(input, output, session){
 			show(id='size_control')
 			callModule(module=map_finder, id="UniversalID", coord_data = coord_data)
 			callModule(module=world_map, id='UniversalID', extra_data = list("coord_data" = coord_data, "grid_layout" = grid_layout, "grid_size" = grid_size))
-			
-
 			
 		}
 	})

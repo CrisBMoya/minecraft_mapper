@@ -14,8 +14,8 @@ file.rename(from=paste0('www/', img_list),
 	to=paste0('www/', img_list_new))
 
 ## Create excel sequences
-col_seq = c(LETTERS, paste0(LETTERS[1],LETTERS), paste0(LETTERS[2],LETTERS))
-row_seq = 1:100
+col_seq = c(LETTERS, paste0(LETTERS[1],LETTERS), paste0(LETTERS[2],LETTERS), paste0(LETTERS[3],LETTERS), paste0(LETTERS[4],LETTERS), paste0(LETTERS[5],LETTERS))
+row_seq = 1:200
 
 full_excel = read_excel(path='App/others/minecraft_maps.xlsx', sheet=2, col_names=FALSE)
 init_pos='A1'
@@ -25,9 +25,9 @@ col_index = seq(from=1, to=length(col_seq), by=5)
 row_index = seq(from=1, to=max(row_seq), by=3)
 
 coord_excel_list = list()
-for(i in 1:10){
+for(i in 1:max_ncol){
 	temp_list = list()
-	for(x in 1:6){
+	for(x in 1:max_nrow){
 		temp_list[[x]] = paste0(col_seq[col_index[i]], row_seq[row_index[x]], ':', col_seq[col_index[i+1] - 1],row_seq[row_index[x+1] - 1], ' - ', i,',',x)
 	}
 	coord_excel_list[[i]] = unlist(temp_list)

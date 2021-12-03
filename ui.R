@@ -1,6 +1,8 @@
 library(shiny)
 library(dplyr)
+library(readxl)
 library(shinyjs)
+library(magick)
 
 ## Source modules
 source(paste0(getwd(), "/App/others/pre_load.R"))
